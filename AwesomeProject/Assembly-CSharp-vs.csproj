@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\AG_Scripts\CurrentShape.cs" />
      <Compile Include="Assets\AG_Scripts\DestroyOnInvis.cs" />
      <Compile Include="Assets\AG_Scripts\MoveShape.cs" />
      <Compile Include="Assets\AG_Scripts\SpawnShapes.cs" />
