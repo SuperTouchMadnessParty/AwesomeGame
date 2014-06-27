@@ -46,9 +46,11 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\AG_Scripts\CameraSetup.cs" />
      <Compile Include="Assets\AG_Scripts\CurrentShape.cs" />
      <Compile Include="Assets\AG_Scripts\DestroyOnInvis.cs" />
      <Compile Include="Assets\AG_Scripts\MoveShape.cs" />
+     <Compile Include="Assets\AG_Scripts\PlayerInput.cs" />
      <Compile Include="Assets\AG_Scripts\SpawnShapes.cs" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Background.shader" />

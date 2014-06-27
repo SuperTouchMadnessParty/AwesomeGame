@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public float timer = 2.0f;
+
 
 public class CurrentShape : MonoBehaviour {
+	public float timer = 2.0f;
+
 
 	// Use this for initialization
 	void Start () {
@@ -19,6 +21,6 @@ public class CurrentShape : MonoBehaviour {
 
 		}
 
-		nextTime += Time.DeltaTime;
+		nextTime += Time.deltaTime;
 	}
 }

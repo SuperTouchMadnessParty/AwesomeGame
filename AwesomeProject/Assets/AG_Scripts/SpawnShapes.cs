@@ -25,7 +25,7 @@ public class SpawnShapes : MonoBehaviour {
 
 		//shape.renderer.material = colors [j];
 
-		Debug.Log ("SPAWNED ITEM");
+		//Debug.Log ("SPAWNED ITEM"); 
 
 		Invoke ("Spawn", spawnTime);
 	}
