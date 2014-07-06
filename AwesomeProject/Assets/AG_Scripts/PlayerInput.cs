@@ -16,8 +16,6 @@ public class PlayerInput : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-
-
 		if (platform == RuntimePlatform.Android || platform == RuntimePlatform.IPhonePlayer) {
 			// Mobile controls
 			if(Input.touchCount > 0){
@@ -28,11 +26,22 @@ public class PlayerInput : MonoBehaviour {
 		} else if(platform == RuntimePlatform.WindowsPlayer || platform == RuntimePlatform.WindowsEditor){
 
 			// Windows controls
-			if(Input.GetMouseButtonDown(0)){
+			if(Input.GetMouseButtonDown(0))
+			{
 				checkTouch(Input.mousePosition); 
 			}
 		}
 
+		if (Input.GetKeyDown (KeyCode.Escape)) 
+		{
+			Debug.Log ( Application.loadedLevel );
+
+			if( Application.loadedLevel == 0 )
+				Application.Quit();
+
+			else
+				Application.LoadLevel( 0 );
+		}
 
 	}
 
