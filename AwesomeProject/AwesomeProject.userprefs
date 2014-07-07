@@ -1,8 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\AG_Scripts\PlayerInput.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\AG_Scripts\DestroyOnInvis.cs">
     <Files>
-      <File FileName="Assets\AG_Scripts\PlayerInput.cs" Line="30" Column="3" />
+      <File FileName="Assets\AG_Scripts\PlayerInput.cs" Line="38" Column="4" />
+      <File FileName="Assets\AG_Scripts\SpawnShapes.cs" Line="11" Column="30" />
+      <File FileName="Assets\AG_Scripts\AwesomeGame.cs" Line="13" Column="3" />
+      <File FileName="Assets\AG_Scripts\MoveShape.cs" Line="18" Column="3" />
+      <File FileName="Assets\AG_Scripts\DestroyOnInvis.cs" Line="6" Column="17" />
+      <File FileName="Assets\AG_Scripts\PlayButton.cs" Line="40" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
