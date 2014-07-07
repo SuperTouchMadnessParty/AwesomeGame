@@ -17,3 +17,5 @@ AwesomeProject/AwesomeProject.userprefs
 *.userprefs
 AwesomeProject/Assets/AG_Scripts/AwesomeGame.cs
 AwesomeProject/Assets/AG_Scripts/AwesomeGame.cs.meta
+*.sln
+*.apk
