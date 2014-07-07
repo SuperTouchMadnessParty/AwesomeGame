@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\AG_Scripts\AwesomeGame.cs" />
      <Compile Include="Assets\AG_Scripts\CameraSetup.cs" />
      <Compile Include="Assets\AG_Scripts\CurrentShape.cs" />
      <Compile Include="Assets\AG_Scripts\DestroyOnInvis.cs" />
@@ -223,6 +224,7 @@
      <None Include="Assets\Plugins\Android\google-play-services_lib\res\values-hi\common_strings.xml" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>C:/Users/ghdemo/Documents/GitHub/AwesomeGame/AwesomeProject/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>C:/Users/Scott/Documents/GitHub/AwesomeGame/AwesomeProject/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
