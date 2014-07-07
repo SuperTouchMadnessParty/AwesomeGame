@@ -2,22 +2,20 @@
 using System.Collections;
 
 public class PlayerInput : MonoBehaviour {
-
+	
 	public GameObject ShapeToClick; 
 	RuntimePlatform platform = Application.platform;
 	public float fTimeToSwap = 10.0f;
 	private float fTimer = 0.0f;
-
+	
 	// Use this for initialization
 	void Start () {
-	
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
-
-
+		
 		if (platform == RuntimePlatform.Android || platform == RuntimePlatform.IPhonePlayer) {
 			// Mobile controls
 			if(Input.touchCount > 0){
@@ -26,24 +24,35 @@ public class PlayerInput : MonoBehaviour {
 				}
 			}
 		} else if(platform == RuntimePlatform.WindowsPlayer || platform == RuntimePlatform.WindowsEditor){
-
+			
 			// Windows controls
-			if(Input.GetMouseButtonDown(0)){
+			if(Input.GetMouseButtonDown(0))
+			{
 				checkTouch(Input.mousePosition); 
 			}
 		}
-
-
+		
+		if (Input.GetKeyDown (KeyCode.Escape)) 
+		{
+			Debug.Log ( Application.loadedLevel );
+			
+			if( Application.loadedLevel == 0 )
+				Application.Quit();
+			
+			else
+				Application.LoadLevel( 0 );
+		}
+		
 	}
-
+	
 	void checkTouch(Vector2 position) {
-
+		
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
-
+		
 		if (Physics.Raycast (ray, out hit)) {
 			Debug.Log (hit.transform.gameObject.name);
-
+			
 			if(hit.transform.gameObject.tag == ShapeToClick.gameObject.tag) {
 				Debug.Log ("YOU DID IT CHAMP!");
 			}
