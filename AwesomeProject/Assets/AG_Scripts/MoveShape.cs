@@ -6,8 +6,7 @@ public class MoveShape : MonoBehaviour {
 	public float moveSpeed = 1.0f;
 
 	// Use this for initialization
-	void Start () 
-	{
+	void Start () {
 	
 	}
 	
@@ -15,10 +14,5 @@ public class MoveShape : MonoBehaviour {
 	void Update () 
 	{
 		transform.position += Vector3.down * Time.deltaTime * moveSpeed;
-	}
-
-	void OnBecameInvisible()
-	{
-		Destroy (gameObject);
 	}
 }
