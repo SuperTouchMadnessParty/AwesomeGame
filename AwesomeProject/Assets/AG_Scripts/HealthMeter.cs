@@ -8,11 +8,10 @@ public class HealthMeter : MonoBehaviour
 	public float difficulty = 1;
 	public float damageToTake = 10.0f;
 	public float healthToGain = 5.0f;
-
 	private float startingScale;
 
 	// Use this for initialization
-	void Start () 
+	void Start ()
 	{
 		startingScale = transform.localScale.y;
 		if( health > maxHeath )
@@ -25,7 +24,7 @@ public class HealthMeter : MonoBehaviour
 			
 	}
 
-	void TakeDamage()
+	public void TakeDamage()
 	{
 		health -= damageToTake * difficulty;
 		float healthPercent =  health / maxHeath;
@@ -33,7 +32,7 @@ public class HealthMeter : MonoBehaviour
 		transform.localScale = new Vector3( transform.localScale.x, newScale, transform.localScale.z );
 	}
 
-	void RestoreHealth()
+	public void RestoreHealth()
 	{
 		health += healthToGain * difficulty;
 		if( health > maxHeath )
