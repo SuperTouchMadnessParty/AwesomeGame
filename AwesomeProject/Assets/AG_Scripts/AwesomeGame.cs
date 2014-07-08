@@ -26,7 +26,10 @@ public class AwesomeGame : MonoBehaviour
 
 	void ChangeShape()
 	{
-		shapeToClick.renderer.material = mats [Random.Range (0, mats.Count)];
+		int i = Random.Range (0, mats.Count);
+
+		shapeToClick.renderer.material = mats [i];
+		shapeToClick.tag = spawnObjects [i].tag;
 
 		Invoke ( "ChangeShape", shapeChangeDelay );
 	}
