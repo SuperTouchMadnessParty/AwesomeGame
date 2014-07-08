@@ -7,11 +7,14 @@ public class AwesomeGame : MonoBehaviour
 	public GameObject shapeToClick;
 
 	public List<GameObject> spawnObjects = new List<GameObject>();
+	public List<Material> mats = new List<Material> ();
 	public float spawnDelay = 1;
+	public float shapeChangeDelay = 5;
 
 	// Use this for initialization
 	void Start () 
 	{
+		shapeToClick = GameObject.Find ("ShapeToClick");
 		ChangeShape();
 	}
 	
@@ -23,7 +26,8 @@ public class AwesomeGame : MonoBehaviour
 
 	void ChangeShape()
 	{
-		//shapeToClick.renderer.material = spawnObjects[Random.Range(0, spawnObjects.Count)].renderer.material;
-		Invoke ( "ChangeShape", 1.0f );
+		shapeToClick.renderer.material = mats [Random.Range (0, mats.Count)];
+
+		Invoke ( "ChangeShape", shapeChangeDelay );
 	}
 }
