@@ -3,15 +3,19 @@ using System.Collections;
 
 public class HealthMeter : MonoBehaviour 
 {
-	private float maxHeath = 100;
-	private float health = 100;
-	private float difficulty = 1;
-	private Vector3 startPosition;
+	public float health = 100;
+	public float maxHeath = 100;
+	public float difficulty = 1;
+	public float damageToTake = 10.0f;
+	public float healthToGain = 5.0f;
+	private float startingScale;
 
 	// Use this for initialization
-	void Start () 
+	void Start ()
 	{
-		startPosition = transform.position;
+		startingScale = transform.localScale.y;
+		if( health > maxHeath )
+			health = maxHeath;
 	}
 	
 	// Update is called once per frame
@@ -20,16 +24,22 @@ public class HealthMeter : MonoBehaviour
 			
 	}
 
-	void TakeDamage()
+	public void TakeDamage()
 	{
-		health -= 10.0f * difficulty;
-		float healthPercent =  ( maxHeath - health ) / maxHeath;
-		Vector3 delta = new Vector3( 0.0f, ( healthPercent * 1.35f ), 0.0f );
-		transform.position = startPosition - delta;
+		health -= damageToTake * difficulty;
+		float healthPercent =  health / maxHeath;
+		float newScale = healthPercent * startingScale;
+		transform.localScale = new Vector3( transform.localScale.x, newScale, transform.localScale.z );
 	}
 
-	void RestoreHealth()
+	public void RestoreHealth()
 	{
+		health += healthToGain * difficulty;
+		if( health > maxHeath )
+			health = maxHeath;
 
+		float healthPercent =  health / maxHeath;
+		float newScale = healthPercent * startingScale;
+		transform.localScale = new Vector3( transform.localScale.x, newScale, transform.localScale.z );
 	}
 }
