@@ -1,15 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\AG_Scripts\CurrentShape.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\AG_Scripts\HealthMeter.cs">
     <Files>
-      <File FileName="Assets\AG_Scripts\CurrentShape.cs" Line="21" Column="28" />
+      <File FileName="Assets\AG_Scripts\HealthMeter.cs" Line="14" Column="38" />
+      <File FileName="Assets\AG_Scripts\ShapeSpawner.cs" Line="1" Column="1" />
+      <File FileName="Assets\AG_Scripts\PlayerInput.cs" Line="1" Column="1" />
+      <File FileName="Assets\AG_Scripts\AwesomeGame.cs" Line="1" Column="1" />
+      <File FileName="Assets\AG_Scripts\MoveShape.cs" Line="13" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="C:\Users\ghdemo\Documents\GitHub\AwesomeGame\AwesomeProject\Assets\AG_Scripts\SpawnShapes.cs" line="8" />
-      <Breakpoint file="C:\Users\ghdemo\Documents\GitHub\AwesomeGame\AwesomeProject\Assets\AG_Scripts\SpawnShapes.cs" line="2" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
