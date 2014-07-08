@@ -4,11 +4,13 @@ using System.Collections;
 public class PlayerInput : MonoBehaviour {
 
 	RuntimePlatform platform = Application.platform;
+
 	
 	// Use this for initialization
 	void Start () 
 	{
-		DontDestroyOnLoad(this);		
+		DontDestroyOnLoad(this);
+		ShapeToClick = GameObject.Find ("ShapeToClick");
 	}
 	
 	// Update is called once per frame

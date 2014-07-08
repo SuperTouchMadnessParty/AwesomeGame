@@ -1,8 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\AG_Scripts\AwesomeGame.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\AG_Materials\AlphaTest.shader">
     <Files>
-      <File FileName="Assets\AG_Scripts\AwesomeGame.cs" Line="1" Column="1" />
+      <File FileName="Assets\AG_Scripts\AwesomeGame.cs" Line="18" Column="17" />
+      <File FileName="Assets\AG_Scripts\ShapeSpawner.cs" Line="22" Column="45" />
+      <File FileName="Assets\AG_Scripts\PlayerInput.cs" Line="1" Column="1" />
+      <File FileName="Assets\AG_Scripts\MoveShape.cs" Line="1" Column="1" />
+      <File FileName="Assets\AG_Materials\AlphaTest.shader" Line="19" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
