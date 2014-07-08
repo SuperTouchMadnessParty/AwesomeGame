@@ -9,8 +9,9 @@ public class PlayerInput : MonoBehaviour {
 	private float fTimer = 0.0f;
 	
 	// Use this for initialization
-	void Start () {
-		
+	void Start () 
+	{
+		DontDestroyOnLoad(this);		
 	}
 	
 	// Update is called once per frame

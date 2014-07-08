@@ -11,7 +11,8 @@ public class MoveShape : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 		transform.position += Vector3.down * Time.deltaTime * moveSpeed;
 	}
 }

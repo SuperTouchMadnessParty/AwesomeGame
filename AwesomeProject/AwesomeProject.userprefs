@@ -1,8 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\AG_Scripts\PlayerInput.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\AG_Scripts\AwesomeGame.cs">
     <Files>
-      <File FileName="Assets\AG_Scripts\PlayerInput.cs" Line="30" Column="3" />
+      <File FileName="Assets\AG_Scripts\ShapeSpawner.cs" Line="11" Column="3" />
+      <File FileName="Assets\AG_Scripts\PlayerInput.cs" Line="14" Column="29" />
+      <File FileName="Assets\AG_Scripts\AwesomeGame.cs" Line="26" Column="5" />
+      <File FileName="Assets\AG_Scripts\MoveShape.cs" Line="4" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
