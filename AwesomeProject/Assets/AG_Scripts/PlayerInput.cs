@@ -10,7 +10,6 @@ public class PlayerInput : MonoBehaviour {
 	void Start () 
 	{
 		DontDestroyOnLoad(this);
-		ShapeToClick = GameObject.Find ("ShapeToClick");
 	}
 	
 	// Update is called once per frame
