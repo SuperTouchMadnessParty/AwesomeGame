@@ -4,14 +4,15 @@ using System.Collections;
 public class PlayerInput : MonoBehaviour {
 	
 	public GameObject ShapeToClick; 
-	RuntimePlatform platform = Application.platform;
+	RuntimePlatform platform	= Application.platform;
 	public float fTimeToSwap = 10.0f;
 	private float fTimer = 0.0f;
 	
 	// Use this for initialization
 	void Start () 
 	{
-		DontDestroyOnLoad(this);		
+		DontDestroyOnLoad(this);
+		ShapeToClick = GameObject.Find ("ShapeToClick");
 	}
 	
 	// Update is called once per frame
@@ -52,10 +53,12 @@ public class PlayerInput : MonoBehaviour {
 		RaycastHit hit;
 		
 		if (Physics.Raycast (ray, out hit)) {
-			Debug.Log (hit.transform.gameObject.name);
 			
 			if(hit.transform.gameObject.tag == ShapeToClick.gameObject.tag) {
 				Debug.Log ("YOU DID IT CHAMP!");
+			}
+			else {
+				Debug.Log ("FAILURE!");
 			}
 			Destroy(hit.transform.gameObject);
 		}
