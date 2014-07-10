@@ -10,6 +10,7 @@ public class AwesomeGame : MonoBehaviour
 	public List<Material> mats = new List<Material> ();
 	public float spawnDelay = 1;
 	public float shapeChangeDelay = 5;
+	public GameObject incorrectExplosion;
 
 	private HealthMeter healthMeter;
 	private RuntimePlatform platform = Application.platform;
@@ -51,18 +52,21 @@ public class AwesomeGame : MonoBehaviour
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
 		
-		if (Physics.Raycast (ray, out hit)) 
+		if (Physics.Raycast (ray, out hit) && hit.transform.gameObject.tag == "Shape" ) 
 		{
-			Debug.Log (hit.transform.gameObject.name);
+			MoveShape shape = hit.transform.gameObject.GetComponent< MoveShape >();
+			Debug.Log (shape.name);
 
-			if(hit.transform.gameObject.renderer.material.name == shapeToClick.gameObject.renderer.material.name) 
+			if(shape.gameObject.renderer.material.name == shapeToClick.gameObject.renderer.material.name) 
 			{
 				Debug.Log ("YOU DID IT CHAMP!");
 				healthMeter.RestoreHealth();
+				SpawnExplosion( shape.explosionEffect, shape.transform.position, shape.transform.rotation );
 			}
 			else
 			{
 				healthMeter.TakeDamage();
+				SpawnExplosion( incorrectExplosion, shape.transform.position, shape.transform.rotation );
 			}
 
 			Destroy(hit.transform.gameObject);
@@ -74,8 +78,12 @@ public class AwesomeGame : MonoBehaviour
 		int i = Random.Range (0, mats.Count);
 
 		shapeToClick.renderer.material = mats [i];
-		shapeToClick.tag = spawnObjects [i].tag;
 
 		Invoke ( "ChangeShape", shapeChangeDelay );
+	}
+
+	public void SpawnExplosion( GameObject particleEffect, Vector3 position, Quaternion rotation )
+	{
+		Instantiate( particleEffect, position, rotation );
 	}
 }

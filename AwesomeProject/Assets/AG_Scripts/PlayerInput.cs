@@ -19,11 +19,11 @@ public class PlayerInput : MonoBehaviour {
 		{
 			Debug.Log ( Application.loadedLevel );
 			
-			if( Application.loadedLevel == 0 )
+			if( Application.loadedLevel == 1 )
 				Application.Quit();
 			
 			else
-				Application.LoadLevel( 0 );
+				Application.LoadLevel( 1 );
 		}
 		
 	}
