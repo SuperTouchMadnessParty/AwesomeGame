@@ -51,7 +51,7 @@ public class AwesomeGame : MonoBehaviour
 	{
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
-		
+
 		if (Physics.Raycast (ray, out hit) && hit.transform.gameObject.tag == "Shape" ) 
 		{
 			MoveShape shape = hit.transform.gameObject.GetComponent< MoveShape >();
