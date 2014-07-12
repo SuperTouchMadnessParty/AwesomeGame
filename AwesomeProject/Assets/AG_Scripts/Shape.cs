@@ -10,10 +10,20 @@ public class Shape : MonoBehaviour
 	private float acceleration = 0.0f;
 	private float velocity = 1.75f;
 	private Vector3 direction = new Vector3( 0.0f, 0.0f, 0.0f );
+	private AwesomeGame awesomeGame;
 
 	// Use this for initialization
 	void Start () 
-	{}
+	{
+		GameObject game = GameObject.Find ( "Game" );
+		if( game != null )
+			awesomeGame = game.GetComponent<AwesomeGame>();
+	}
+
+	void Update()
+	{
+
+	}
 
 	void FixedUpdate () 
 	{
