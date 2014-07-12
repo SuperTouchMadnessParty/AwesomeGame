@@ -12,6 +12,8 @@ public class AwesomeGame : MonoBehaviour
 	public float shapeChangeDelay = 5;
 	public GameObject incorrectExplosion;
 
+	private bool startingNextRound = false;
+	private int round;
 	private HealthMeter healthMeter;
 	private RuntimePlatform platform = Application.platform;
 
@@ -45,6 +47,11 @@ public class AwesomeGame : MonoBehaviour
 				checkTouch(Input.mousePosition); 
 			}
 		}
+
+		if( startingNextRound )
+		{
+
+		}
 	}
 
 	void checkTouch(Vector2 position) 
@@ -54,7 +61,7 @@ public class AwesomeGame : MonoBehaviour
 
 		if (Physics.Raycast (ray, out hit) && hit.transform.gameObject.tag == "Shape" ) 
 		{
-			MoveShape shape = hit.transform.gameObject.GetComponent< MoveShape >();
+			Shape shape = hit.transform.gameObject.GetComponent< Shape >();
 			Debug.Log (shape.name);
 
 			if(shape.gameObject.renderer.material.name == shapeToClick.gameObject.renderer.material.name) 
