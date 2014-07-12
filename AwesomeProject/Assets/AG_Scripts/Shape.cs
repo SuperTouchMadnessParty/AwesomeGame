@@ -17,7 +17,7 @@ public class Shape : MonoBehaviour
 
 	void FixedUpdate () 
 	{
-		if( affectedByGravity )
+		//if( affectedByGravity )
 
 		transform.position += direction * velocity * Time.fixedDeltaTime;
 	}
