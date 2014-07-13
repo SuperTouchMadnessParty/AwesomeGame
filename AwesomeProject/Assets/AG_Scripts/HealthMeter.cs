@@ -27,6 +27,9 @@ public class HealthMeter : MonoBehaviour
 	public void TakeDamage()
 	{
 		health -= damageToTake * difficulty;
+		if( health < 0 )
+			health = 0;
+
 		float healthPercent =  health / maxHeath;
 		float newScale = healthPercent * startingScale;
 		transform.localScale = new Vector3( transform.localScale.x, newScale, transform.localScale.z );
