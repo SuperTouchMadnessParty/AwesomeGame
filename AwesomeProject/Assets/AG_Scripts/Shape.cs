@@ -22,7 +22,14 @@ public class Shape : MonoBehaviour
 
 	void Update()
 	{
-
+		if( awesomeGame )
+		{
+			if( !awesomeGame.collider.bounds.Intersects( this.collider.bounds ) )
+			{
+				awesomeGame.ShapeFellOutOfBounds( this );
+				Destroy( gameObject );
+			}
+		}
 	}
 
 	void FixedUpdate () 
@@ -40,11 +47,5 @@ public class Shape : MonoBehaviour
 	public void SetVelocity( float initialVelocity )
 	{
 		velocity = initialVelocity;
-	}
-
-	void OnBecameInvisible()
-	{
-		Debug.Log( "Invis Destroy" );
-		Destroy (gameObject);
 	}
 }
