@@ -59,7 +59,7 @@ public class AwesomeGame : MonoBehaviour
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
 
-		if (Physics.Raycast (ray, out hit) && hit.transform.gameObject.tag == "Shape" ) 
+		if (Physics.Raycast ( ray, out hit, Mathf.Infinity, 5 ) && hit.transform.gameObject.tag == "Shape" ) 
 		{
 			Shape shape = hit.transform.gameObject.GetComponent< Shape >();
 			Debug.Log (shape.name);
@@ -77,6 +77,14 @@ public class AwesomeGame : MonoBehaviour
 			}
 
 			Destroy(hit.transform.gameObject);
+		}
+	}
+
+	public void ShapeFellOutOfBounds( Shape shape )
+	{
+		if( shape.gameObject.renderer.material.name == shapeToClick.renderer.material.name )
+		{
+			healthMeter.TakeDamage();
 		}
 	}
 
