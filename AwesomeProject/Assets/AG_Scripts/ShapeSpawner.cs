@@ -9,16 +9,27 @@ public class ShapeSpawner : MonoBehaviour
 	public float shapeInitialVelocity = 1.75f;
 	public bool pauseSpawning = false;
 	public int spawnGroup = 0;
+	public float spawnTimer = 0;
 
 	// Use this for initialization
 	void Start () 
 	{
-		Invoke ("Spawn", game.spawnDelay);
+		Spawn();
 	}
 	
 	// Update is called once per frame
 	void Update () 
-	{}
+	{
+		if( !game.IsPaused )
+		{
+			spawnTimer += Time.deltaTime;
+			if( spawnTimer >= game.spawnDelay )
+			{
+				Spawn();
+				spawnTimer = 0;
+			}
+		}
+	}
 
 	void Spawn() 
 	{
@@ -29,12 +40,6 @@ public class ShapeSpawner : MonoBehaviour
 
 		shapeComponent.SetDirection( direction );
 		shapeComponent.SetVelocity( shapeInitialVelocity );
-		//shape.renderer.material = colors [j];
-
-		//Debug.Log ("SPAWNED ITEM"); 
-
-		if( !pauseSpawning )
-			Invoke ("Spawn", game.spawnDelay);
 	}
 	
 }

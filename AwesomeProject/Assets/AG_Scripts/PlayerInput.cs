@@ -19,11 +19,11 @@ public class PlayerInput : MonoBehaviour {
 		{
 			Debug.Log ( Application.loadedLevel );
 			
-			if( Application.loadedLevel == 1 )
+			if( Application.loadedLevelName == "MainMenu" )
 				Application.Quit();
 			
 			else
-				Application.LoadLevel( 1 );
+				Application.LoadLevel( "MainMenu" );
 		}
 		
 	}

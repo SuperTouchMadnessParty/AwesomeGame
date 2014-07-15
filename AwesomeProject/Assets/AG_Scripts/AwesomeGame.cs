@@ -11,6 +11,16 @@ public class AwesomeGame : MonoBehaviour
 	public float spawnDelay = 1;
 	public float shapeChangeDelay = 5;
 	public GameObject incorrectExplosion;
+	public GameObject ScoreGUIText;
+
+	private int score = 0;
+	private bool bIsPaused = false;
+
+	public bool IsPaused
+	{
+		get{ return bIsPaused; }
+
+	}
 
 	private bool startingNextRound = false;
 	private int round;
@@ -68,6 +78,8 @@ public class AwesomeGame : MonoBehaviour
 			{
 				Debug.Log ("YOU DID IT CHAMP!");
 				healthMeter.RestoreHealth();
+				score += (int)healthMeter.health;
+				ScoreGUIText.GetComponent<GUIText>().text = score.ToString();
 				SpawnExplosion( shape.explosionEffect, shape.transform.position, shape.transform.rotation );
 			}
 			else
@@ -100,5 +112,10 @@ public class AwesomeGame : MonoBehaviour
 	public void SpawnExplosion( GameObject particleEffect, Vector3 position, Quaternion rotation )
 	{
 		Instantiate( particleEffect, position, rotation );
+	}
+
+	public void GameOver()
+	{
+		bIsPaused = true;
 	}
 }
