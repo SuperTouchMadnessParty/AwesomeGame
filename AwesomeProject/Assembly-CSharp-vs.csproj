@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\AG_Scripts\AwesomeGame.cs" />
+     <Compile Include="Assets\AG_Scripts\Button.cs" />
      <Compile Include="Assets\AG_Scripts\CameraSetup.cs" />
      <Compile Include="Assets\AG_Scripts\GoogleMobileAdsDemoScript.cs" />
      <Compile Include="Assets\AG_Scripts\HealthMeter.cs" />
