@@ -11,15 +11,27 @@ public class AwesomeGame : MonoBehaviour
 	public float spawnDelay = 1;
 	public float shapeChangeDelay = 5;
 	public GameObject incorrectExplosion;
+	public GameObject ScoreGUIText;
+
+	private int score = 0;
+	private bool bIsPaused = false;
+
+	public bool IsPaused
+	{
+		get{ return bIsPaused; }
+
+	}
 
 	private bool startingNextRound = false;
 	private int round;
+	private float changeTime = 0;
 	private HealthMeter healthMeter;
 	private RuntimePlatform platform = Application.platform;
 
 	// Use this for initialization
 	void Start () 
 	{
+		ScoreGUIText.transform.position = Camera.main.WorldToViewportPoint( ScoreGUIText.transform.position );
 		GameObject meter = GameObject.FindGameObjectWithTag( "HealthMeter" );
 		healthMeter = meter.GetComponent< HealthMeter >();
 		shapeToClick = GameObject.Find ("ShapeToClick");
@@ -48,6 +60,16 @@ public class AwesomeGame : MonoBehaviour
 			}
 		}
 
+		if( !bIsPaused )
+		{
+			changeTime += Time.deltaTime;
+			if( changeTime >= shapeChangeDelay )
+			{
+				ChangeShape();
+				changeTime = 0;
+			}
+		}
+
 		if( startingNextRound )
 		{
 
@@ -59,24 +81,29 @@ public class AwesomeGame : MonoBehaviour
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
 
-		if (Physics.Raycast ( ray, out hit, Mathf.Infinity, 5 ) && hit.transform.gameObject.tag == "Shape" ) 
+		if( !bIsPaused )
 		{
-			Shape shape = hit.transform.gameObject.GetComponent< Shape >();
-			Debug.Log (shape.name);
-
-			if(shape.gameObject.renderer.material.name == shapeToClick.gameObject.renderer.material.name) 
+			if (Physics.Raycast ( ray, out hit, Mathf.Infinity, 5 ) && hit.transform.gameObject.tag == "Shape" ) 
 			{
-				Debug.Log ("YOU DID IT CHAMP!");
-				healthMeter.RestoreHealth();
-				SpawnExplosion( shape.explosionEffect, shape.transform.position, shape.transform.rotation );
-			}
-			else
-			{
-				healthMeter.TakeDamage();
-				SpawnExplosion( incorrectExplosion, shape.transform.position, shape.transform.rotation );
-			}
+				Shape shape = hit.transform.gameObject.GetComponent< Shape >();
+				Debug.Log (shape.name);
 
-			Destroy(hit.transform.gameObject);
+				if(shape.gameObject.renderer.material.name == shapeToClick.gameObject.renderer.material.name) 
+				{
+					Debug.Log ("YOU DID IT CHAMP!");
+					healthMeter.RestoreHealth();
+					score += (int)healthMeter.health;
+					ScoreGUIText.GetComponent<GUIText>().text = score.ToString();
+					SpawnExplosion( shape.explosionEffect, shape.transform.position, shape.transform.rotation );
+				}
+				else
+				{
+					healthMeter.TakeDamage();
+					SpawnExplosion( incorrectExplosion, shape.transform.position, shape.transform.rotation );
+				}
+
+				Destroy(hit.transform.gameObject);
+			}
 		}
 	}
 
@@ -93,12 +120,15 @@ public class AwesomeGame : MonoBehaviour
 		int i = Random.Range (0, mats.Count);
 
 		shapeToClick.renderer.material = mats [i];
-
-		Invoke ( "ChangeShape", shapeChangeDelay );
 	}
 
 	public void SpawnExplosion( GameObject particleEffect, Vector3 position, Quaternion rotation )
 	{
 		Instantiate( particleEffect, position, rotation );
+	}
+
+	public void GameOver()
+	{
+		bIsPaused = true;
 	}
 }

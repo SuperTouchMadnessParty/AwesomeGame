@@ -28,7 +28,12 @@ public class HealthMeter : MonoBehaviour
 	{
 		health -= damageToTake * difficulty;
 		if( health < 0 )
+		{
 			health = 0;
+			GameObject game = (GameObject)GameObject.Find( "Game" );
+			AwesomeGame awesomeGame = game.GetComponent<AwesomeGame>();
+			awesomeGame.GameOver();
+		}
 
 		float healthPercent =  health / maxHeath;
 		float newScale = healthPercent * startingScale;

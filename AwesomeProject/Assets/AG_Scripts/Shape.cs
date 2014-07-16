@@ -35,8 +35,17 @@ public class Shape : MonoBehaviour
 	void FixedUpdate () 
 	{
 		//if( affectedByGravity )
-
-		transform.position += direction * velocity * Time.fixedDeltaTime;
+		if( awesomeGame )
+		{
+			if( !awesomeGame.IsPaused )
+			{
+				transform.position += direction * velocity * Time.fixedDeltaTime;
+			}
+		}
+		else
+		{
+			transform.position += direction * velocity * Time.fixedDeltaTime;
+		}
 	}
 
  	public void SetDirection( Vector3 direction )
