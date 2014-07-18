@@ -14,6 +14,11 @@ public class GoogleMobileAdsDemoScript : MonoBehaviour
 	{
 		RequestBanner ();
 	}
+
+	public void OnDestroy()
+	{
+		bannerView.Destroy();
+	}
 	
 	private void RequestBanner()
 	{

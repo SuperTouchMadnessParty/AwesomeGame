@@ -20,10 +20,10 @@ public class ShapeSpawner : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if( !game.IsPaused )
+		if( !game.IsPaused && !pauseSpawning )
 		{
 			spawnTimer += Time.deltaTime;
-			if( spawnTimer >= game.spawnDelay )
+			if( spawnTimer >= game.SpawnDelay )
 			{
 				Spawn();
 				spawnTimer = 0;
@@ -31,7 +31,7 @@ public class ShapeSpawner : MonoBehaviour
 		}
 	}
 
-	void Spawn() 
+	public void Spawn() 
 	{
 		int i = Random.Range (0, game.spawnObjects.Count);
 		//int j = Random.Range (0, colors.Length);
@@ -39,7 +39,7 @@ public class ShapeSpawner : MonoBehaviour
 		Shape shapeComponent = shapeObject.GetComponent<Shape>();
 
 		shapeComponent.SetDirection( direction );
-		shapeComponent.SetVelocity( shapeInitialVelocity );
+		shapeComponent.SetVelocity( shapeInitialVelocity + game.SpeedModifier );
 	}
 	
 }

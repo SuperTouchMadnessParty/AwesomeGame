@@ -8,10 +8,27 @@ public class AwesomeGame : MonoBehaviour
 
 	public List<GameObject> spawnObjects = new List<GameObject>();
 	public List<Material> mats = new List<Material> ();
-	public float spawnDelay = 1;
 	public float shapeChangeDelay = 5;
 	public GameObject incorrectExplosion;
 	public GameObject ScoreGUIText;
+
+	protected float spawnDelay = 1;
+
+	public float SpawnDelay
+	{
+		get
+		{
+			return spawnDelay - SpeedModifier * 0.25f;
+		}
+	}
+
+	public float SpeedModifier
+	{
+		get
+		{
+			return (float)( score / 1000 ) * 0.1f;
+		}
+	}
 
 	private int score = 0;
 	private bool bIsPaused = false;
@@ -31,6 +48,9 @@ public class AwesomeGame : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		if( platform == RuntimePlatform.Android || platform == RuntimePlatform.IPhonePlayer )
+			Camera.main.aspect = 0.619f;
+
 		ScoreGUIText.transform.position = Camera.main.WorldToViewportPoint( ScoreGUIText.transform.position );
 		GameObject meter = GameObject.FindGameObjectWithTag( "HealthMeter" );
 		healthMeter = meter.GetComponent< HealthMeter >();
