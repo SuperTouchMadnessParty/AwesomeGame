@@ -33,7 +33,7 @@ public class GoogleMobileAdsDemoScript : MonoBehaviour
 		#endif
 		
 		// Create a 320x50 banner at the top of the screen.
-		bannerView = new BannerView(adUnitId, AdSize.SmartBanner, AdPosition.Top);
+		bannerView = new BannerView(adUnitId, AdSize.SmartBanner, AdPosition.Bottom);
 		// Register for ad events.
 		bannerView.AdLoaded += HandleAdLoaded;
 		bannerView.AdFailedToLoad += HandleAdFailedToLoad;
