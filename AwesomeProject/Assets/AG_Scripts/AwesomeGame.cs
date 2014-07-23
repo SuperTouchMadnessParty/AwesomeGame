@@ -11,6 +11,7 @@ public class AwesomeGame : MonoBehaviour
 	public float shapeChangeDelay = 5;
 	public GameObject incorrectExplosion;
 	public GameObject ScoreGUIText;
+	public GameObject redFlash;
 
 	protected float spawnDelay = 1;
 
@@ -120,6 +121,7 @@ public class AwesomeGame : MonoBehaviour
 				{
 					healthMeter.TakeDamage();
 					SpawnExplosion( incorrectExplosion, shape.transform.position, shape.transform.rotation );
+					//redFlash.particleEmitter.Emit();
 				}
 
 				Destroy(hit.transform.gameObject);
@@ -152,3 +154,4 @@ public class AwesomeGame : MonoBehaviour
 		bIsPaused = true;
 	}
 }
+
