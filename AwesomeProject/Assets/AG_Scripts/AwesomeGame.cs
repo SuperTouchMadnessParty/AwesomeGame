@@ -121,7 +121,7 @@ public class AwesomeGame : MonoBehaviour
 				{
 					healthMeter.TakeDamage();
 					SpawnExplosion( incorrectExplosion, shape.transform.position, shape.transform.rotation );
-					//redFlash.particleEmitter.Emit();
+					redFlash.particleSystem.Emit(1);
 				}
 
 				Destroy(hit.transform.gameObject);
@@ -134,6 +134,7 @@ public class AwesomeGame : MonoBehaviour
 		if( shape.gameObject.renderer.material.name == shapeToClick.renderer.material.name )
 		{
 			healthMeter.TakeDamage();
+			redFlash.particleSystem.Emit(1);
 		}
 	}
 
