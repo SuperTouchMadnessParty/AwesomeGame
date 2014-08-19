@@ -12,6 +12,11 @@ public class AwesomeGame : MonoBehaviour
 	public GameObject incorrectExplosion;
 	public GameObject ScoreGUIText;
 	public GameObject redFlash;
+	public GameObject redShape;
+	public GameObject blueShape;
+	public GameObject yellowShape;
+	public GameObject greenShape;
+
 
 	protected float spawnDelay = 1;
 
@@ -107,11 +112,11 @@ public class AwesomeGame : MonoBehaviour
 			if (Physics.Raycast ( ray, out hit, Mathf.Infinity, 5 ) && hit.transform.gameObject.tag == "Shape" ) 
 			{
 				Shape shape = hit.transform.gameObject.GetComponent< Shape >();
-				Debug.Log (shape.name);
+				//Debug.Log (shape.name);
 
 				if(shape.gameObject.renderer.material.name == shapeToClick.gameObject.renderer.material.name) 
 				{
-					Debug.Log ("YOU DID IT CHAMP!");
+					//Debug.Log ("YOU DID IT CHAMP!");
 					healthMeter.RestoreHealth();
 					score += (int)healthMeter.health;
 					ScoreGUIText.GetComponent<GUIText>().text = score.ToString();
@@ -143,6 +148,10 @@ public class AwesomeGame : MonoBehaviour
 		int i = Random.Range (0, mats.Count);
 
 		shapeToClick.renderer.material = mats [i];
+		redShape.particleSystem.Emit (1);
+		blueShape.particleSystem.Emit (1);
+		yellowShape.particleSystem.Emit (1);
+		greenShape.particleSystem.Emit (1);			
 	}
 
 	public void SpawnExplosion( GameObject particleEffect, Vector3 position, Quaternion rotation )
