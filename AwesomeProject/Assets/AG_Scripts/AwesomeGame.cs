@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class AwesomeGame : MonoBehaviour 
 {
 	public GameObject shapeToClick;
-
+	public ShapeSpawner sSpawner; 
 	public List<GameObject> spawnObjects = new List<GameObject>();
 	public List<Material> mats = new List<Material> ();
 	public float shapeChangeDelay = 5;
@@ -62,6 +62,7 @@ public class AwesomeGame : MonoBehaviour
 		healthMeter = meter.GetComponent< HealthMeter >();
 		shapeToClick = GameObject.Find ("ShapeToClick");
 		ChangeShape();
+
 	}
 	
 	// Update is called once per frame
@@ -91,6 +92,7 @@ public class AwesomeGame : MonoBehaviour
 			changeTime += Time.deltaTime;
 			if( changeTime >= shapeChangeDelay )
 			{
+				//sSpawner.RoundChange();  *object reference not set to an instance of an object* error
 				ChangeShape();
 				changeTime = 0;
 			}
@@ -116,7 +118,7 @@ public class AwesomeGame : MonoBehaviour
 
 				if(shape.gameObject.renderer.material.name == shapeToClick.gameObject.renderer.material.name) 
 				{
-					//Debug.Log ("YOU DID IT CHAMP!");
+					Debug.Log ("YOU DID IT CHAMP!");
 					healthMeter.RestoreHealth();
 					score += (int)healthMeter.health;
 					ScoreGUIText.GetComponent<GUIText>().text = score.ToString();
@@ -148,10 +150,11 @@ public class AwesomeGame : MonoBehaviour
 		int i = Random.Range (0, mats.Count);
 
 		shapeToClick.renderer.material = mats [i];
-		redShape.particleSystem.Emit (1);
-		blueShape.particleSystem.Emit (1);
-		yellowShape.particleSystem.Emit (1);
-		greenShape.particleSystem.Emit (1);			
+		Instantiate (redShape);
+		Instantiate (blueShape);
+		Instantiate (yellowShape);
+		Instantiate (greenShape);
+
 	}
 
 	public void SpawnExplosion( GameObject particleEffect, Vector3 position, Quaternion rotation )

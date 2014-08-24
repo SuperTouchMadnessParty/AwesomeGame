@@ -41,5 +41,30 @@ public class ShapeSpawner : MonoBehaviour
 		shapeComponent.SetDirection( direction );
 		shapeComponent.SetVelocity( shapeInitialVelocity + game.SpeedModifier );
 	}
-	
+
+	/*public void RoundChange()
+	{
+		Debug.Log ("roundChange");
+		/*pauseSpawning = true;
+		if( !game.IsPaused && pauseSpawning == true)
+		{
+			Debug.Log ("pauseSpawning");
+			int j = 0;
+			//spawnTimer += Time.deltaTime;
+			if(( spawnTimer >= game.SpawnDelay) && (j < 5))
+			{
+				/*int i = 1;
+
+				GameObject shapeObject = (GameObject)Instantiate (game.spawnObjects [i], transform.position, game.spawnObjects[i].transform.rotation);
+				Shape shapeComponent = shapeObject.GetComponent<Shape>();
+				
+				shapeComponent.SetDirection( direction );
+				shapeComponent.SetVelocity( shapeInitialVelocity + game.SpeedModifier );
+
+				spawnTimer = 0;
+				j++;
+			}
+			pauseSpawning = false;
+		}
+	}*/
 }
