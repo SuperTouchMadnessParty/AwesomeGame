@@ -46,6 +46,7 @@ public class AwesomeGame : MonoBehaviour
 	}
 
 	private bool startingNextRound = false;
+	private bool tutorial = true;
 	private int round;
 	private float changeTime = 0;
 	private HealthMeter healthMeter;
@@ -68,15 +69,6 @@ public class AwesomeGame : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if (bIsPaused) 
-		{
-			if (Input.GetMouseButtonDown(0) || Input.touchCount > 0)
-			{
-				bIsPaused = false;
-				DestroyObject(textInfo); 
-			}
-		}
-
 		// Mobile controls
 		if (platform == RuntimePlatform.Android || platform == RuntimePlatform.IPhonePlayer) 
 		{
@@ -94,6 +86,23 @@ public class AwesomeGame : MonoBehaviour
 			{
 				checkTouch(Input.mousePosition); 
 			}
+		}
+
+		if ( tutorial ) 
+		{
+			if(Input.touchCount > 0){
+				if(Input.GetTouch(0).phase == TouchPhase.Began){
+					bIsPaused = false;
+					DestroyObject(textInfo); 
+					tutorial = false;
+				}
+			}
+				else if(Input.GetMouseButtonDown(0))
+				{
+					bIsPaused = false;
+					DestroyObject(textInfo); 
+					tutorial = false; 
+				}
 		}
 
 		if( !bIsPaused )
