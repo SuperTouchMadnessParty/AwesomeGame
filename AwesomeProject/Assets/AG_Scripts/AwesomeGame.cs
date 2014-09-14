@@ -16,7 +16,7 @@ public class AwesomeGame : MonoBehaviour
 	public GameObject blueShape;
 	public GameObject yellowShape;
 	public GameObject greenShape;
-
+	public GameObject textInfo;
 
 	protected float spawnDelay = 1;
 
@@ -37,7 +37,7 @@ public class AwesomeGame : MonoBehaviour
 	}
 
 	private int score = 0;
-	private bool bIsPaused = false;
+	private bool bIsPaused = true;
 
 	public bool IsPaused
 	{
@@ -68,6 +68,15 @@ public class AwesomeGame : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		if (bIsPaused) 
+		{
+			if (Input.GetMouseButtonDown(0) || Input.touchCount > 0)
+			{
+				bIsPaused = false;
+				DestroyObject(textInfo); 
+			}
+		}
+
 		// Mobile controls
 		if (platform == RuntimePlatform.Android || platform == RuntimePlatform.IPhonePlayer) 
 		{
@@ -118,7 +127,7 @@ public class AwesomeGame : MonoBehaviour
 
 				if(shape.gameObject.renderer.material.name == shapeToClick.gameObject.renderer.material.name) 
 				{
-					Debug.Log ("YOU DID IT CHAMP!");
+					//Debug.Log ("YOU DID IT CHAMP!");
 					healthMeter.RestoreHealth();
 					score += (int)healthMeter.health;
 					ScoreGUIText.GetComponent<GUIText>().text = score.ToString();
