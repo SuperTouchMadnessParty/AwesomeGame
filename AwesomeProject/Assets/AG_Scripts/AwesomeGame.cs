@@ -5,10 +5,9 @@ using System.Collections.Generic;
 public class AwesomeGame : MonoBehaviour 
 {
 	public GameObject shapeToClick;
-	public ShapeSpawner sSpawner; 
 	public List<GameObject> spawnObjects = new List<GameObject>();
 	public List<Material> mats = new List<Material> ();
-	public float shapeChangeDelay = 5;
+	public float shapeChangeDelay = 50;
 	public GameObject incorrectExplosion;
 	public GameObject ScoreGUIText;
 	public GameObject redFlash;
@@ -17,6 +16,7 @@ public class AwesomeGame : MonoBehaviour
 	public GameObject yellowShape;
 	public GameObject greenShape;
 	public GameObject textInfo;
+	public GameObject trigger;
 
 	protected float spawnDelay = 1;
 
@@ -37,6 +37,7 @@ public class AwesomeGame : MonoBehaviour
 	}
 
 	private int score = 0;
+	private int checkscore = 0;
 	private bool bIsPaused = true;
 
 	public bool IsPaused
@@ -109,16 +110,25 @@ public class AwesomeGame : MonoBehaviour
 		{
 			changeTime += Time.deltaTime;
 			if( changeTime >= shapeChangeDelay )
+			//if (checkscore >= 1250)
 			{
-				//sSpawner.RoundChange();  *object reference not set to an instance of an object* error
 				ChangeShape();
+				startingNextRound = true;
 				changeTime = 0;
+				//checkscore = 0;
 			}
 		}
 
 		if( startingNextRound )
 		{
-
+			// change to turn trigger on/off (destroy just last cpl rows instead of all shapes on screen)
+			GameObject[] ObjectsToDestroy = GameObject.FindGameObjectsWithTag("Shape");
+			
+			foreach(GameObject DestroyObject in ObjectsToDestroy)
+			{
+				Destroy(DestroyObject);
+			}
+			startingNextRound = false;
 		}
 	}
 
@@ -127,7 +137,7 @@ public class AwesomeGame : MonoBehaviour
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
 
-		if( !bIsPaused )
+		if( !bIsPaused && !startingNextRound)
 		{
 			if (Physics.Raycast ( ray, out hit, Mathf.Infinity, 5 ) && hit.transform.gameObject.tag == "Shape" ) 
 			{
@@ -139,6 +149,7 @@ public class AwesomeGame : MonoBehaviour
 					//Debug.Log ("YOU DID IT CHAMP!");
 					healthMeter.RestoreHealth();
 					score += (int)healthMeter.health;
+					checkscore += (int)healthMeter.health;
 					ScoreGUIText.GetComponent<GUIText>().text = score.ToString();
 					SpawnExplosion( shape.explosionEffect, shape.transform.position, shape.transform.rotation );
 				}
@@ -175,6 +186,23 @@ public class AwesomeGame : MonoBehaviour
 
 	}
 
+	/*
+	void OnTriggerEnter2D (Collider2D other)
+	{
+		DestroyAllObject("Shape");
+	}
+
+	void DestroyAllObject (string tag)
+	{
+		GameObject[] ObjectsToDestroy = GameObject.FindGameObjectsWithTag("Shape");
+		
+		foreach(GameObject DestroyObject in ObjectsToDestroy)
+		{
+			Destroy(DestroyObject);
+		}
+		startingNextRound = false;
+	}
+	*/
 	public void SpawnExplosion( GameObject particleEffect, Vector3 position, Quaternion rotation )
 	{
 		Instantiate( particleEffect, position, rotation );
