@@ -121,14 +121,21 @@ public class AwesomeGame : MonoBehaviour
 
 		if( startingNextRound )
 		{
-			// change to turn trigger on/off (destroy just last cpl rows instead of all shapes on screen)
+			// Deletes all shapes on screen when round changes
+			/*
 			GameObject[] ObjectsToDestroy = GameObject.FindGameObjectsWithTag("Shape");
 			
 			foreach(GameObject DestroyObject in ObjectsToDestroy)
 			{
 				Destroy(DestroyObject);
 			}
-			startingNextRound = false;
+			*/
+
+			changeTime += Time.deltaTime;
+			if ( changeTime >= 3 )
+				{
+				startingNextRound = false;
+				}
 		}
 	}
 
@@ -137,7 +144,7 @@ public class AwesomeGame : MonoBehaviour
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
 
-		if( !bIsPaused && !startingNextRound)
+		if( !bIsPaused )
 		{
 			if (Physics.Raycast ( ray, out hit, Mathf.Infinity, 5 ) && hit.transform.gameObject.tag == "Shape" ) 
 			{
@@ -169,8 +176,11 @@ public class AwesomeGame : MonoBehaviour
 	{
 		if( shape.gameObject.renderer.material.name == shapeToClick.renderer.material.name )
 		{
+			if (!startingNextRound)
+			{
 			healthMeter.TakeDamage();
 			redFlash.particleSystem.Emit(1);
+			}
 		}
 	}
 
