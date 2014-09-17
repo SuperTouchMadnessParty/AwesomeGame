@@ -20,7 +20,7 @@ public class AwesomeGame : MonoBehaviour
 
 	protected float spawnDelay = 1;
 
-	public float SpawnDelay
+	public float SpawnDelay 
 	{
 		get
 		{
@@ -32,7 +32,7 @@ public class AwesomeGame : MonoBehaviour
 	{
 		get
 		{
-			return (float)( score / 1000 ) * 0.1f;
+			return (float)( score / 1000 ) * 0.2f;
 		}
 	}
 
@@ -132,7 +132,7 @@ public class AwesomeGame : MonoBehaviour
 			*/
 
 			changeTime += Time.deltaTime;
-			if ( changeTime >= 3 )
+			if ( changeTime >= 3/SpeedModifier) // makes the immunity after shape change shorter as game progresses
 				{
 				startingNextRound = false;
 				}
