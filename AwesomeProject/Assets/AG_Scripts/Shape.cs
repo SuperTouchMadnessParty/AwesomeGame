@@ -24,7 +24,7 @@ public class Shape : MonoBehaviour
 	{
 		if( awesomeGame )
 		{
-			if( !awesomeGame.collider.bounds.Intersects( this.collider.bounds ) )
+			if( !awesomeGame.GetComponent<Collider>().bounds.Intersects( this.GetComponent<Collider>().bounds ) )
 			{
 				awesomeGame.ShapeFellOutOfBounds( this );
 				Destroy( gameObject );

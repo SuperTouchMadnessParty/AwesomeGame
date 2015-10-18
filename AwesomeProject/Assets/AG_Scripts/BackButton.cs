@@ -38,7 +38,7 @@ public class BackButton : MonoBehaviour {
 	
 	void checkTouch( Vector2 position ) 
 	{
-		if( collider2D.OverlapPoint( position ) )
+		if( GetComponent<Collider2D>().OverlapPoint( position ) )
 			Application.LoadLevel("MainMenu");
 	}
 }

@@ -151,7 +151,7 @@ public class AwesomeGame : MonoBehaviour
 				Shape shape = hit.transform.gameObject.GetComponent< Shape >();
 				//Debug.Log (shape.name);
 
-				if(shape.gameObject.renderer.material.name == shapeToClick.gameObject.renderer.material.name) 
+				if(shape.gameObject.GetComponent<Renderer>().material.name == shapeToClick.gameObject.GetComponent<Renderer>().material.name) 
 				{
 					//Debug.Log ("YOU DID IT CHAMP!");
 					healthMeter.RestoreHealth();
@@ -164,7 +164,7 @@ public class AwesomeGame : MonoBehaviour
 				{
 					healthMeter.TakeDamage();
 					SpawnExplosion( incorrectExplosion, shape.transform.position, shape.transform.rotation );
-					redFlash.particleSystem.Emit(1);
+					redFlash.GetComponent<ParticleSystem>().Emit(1);
 				}
 
 				Destroy(hit.transform.gameObject);
@@ -174,12 +174,12 @@ public class AwesomeGame : MonoBehaviour
 
 	public void ShapeFellOutOfBounds( Shape shape )
 	{
-		if( shape.gameObject.renderer.material.name == shapeToClick.renderer.material.name )
+		if( shape.gameObject.GetComponent<Renderer>().material.name == shapeToClick.GetComponent<Renderer>().material.name )
 		{
 			if (!startingNextRound)
 			{
 			healthMeter.TakeDamage();
-			redFlash.particleSystem.Emit(1);
+			redFlash.GetComponent<ParticleSystem>().Emit(1);
 			}
 		}
 	}
@@ -188,7 +188,7 @@ public class AwesomeGame : MonoBehaviour
 	{
 		int i = Random.Range (0, mats.Count);
 
-		shapeToClick.renderer.material = mats [i];
+		shapeToClick.GetComponent<Renderer>().material = mats [i];
 		Instantiate (redShape);
 		Instantiate (blueShape);
 		Instantiate (yellowShape);
