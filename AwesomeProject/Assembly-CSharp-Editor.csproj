@@ -207,13 +207,10 @@
      <None Include="Assets\Plugins\Android\google-play-services_lib\res\values-sw\common_strings.xml" />
      <None Include="Assets\Plugins\Android\google-play-services_lib\res\values-hi\common_strings.xml" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>C:/Users/John/Desktop/AwesomeGame/AwesomeProject/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>E:/TouchParty/AwesomeGame/AwesomeProject/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="Assembly-UnityScript">
- <HintPath>C:/Users/John/Desktop/AwesomeGame/AwesomeProject/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
+ <HintPath>E:/TouchParty/AwesomeGame/AwesomeProject/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
@@ -229,9 +226,6 @@
  </Reference>
  <Reference Include="UnityEditor.Networking">
  <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>E:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
