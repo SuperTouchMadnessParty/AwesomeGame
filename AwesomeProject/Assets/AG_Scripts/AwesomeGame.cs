@@ -191,6 +191,7 @@ public class AwesomeGame : MonoBehaviour
 	void ChangeShape()
 	{
 		int i = Random.Range (0, mats.Count);
+<<<<<<< HEAD
 		GameObject particleSystem;
 
 		shapeToClick.GetComponent<Renderer>().material = mats [i];
@@ -211,6 +212,11 @@ public class AwesomeGame : MonoBehaviour
 				break;
 		}
 /*		Instantiate (redShape);
+=======
+
+		shapeToClick.GetComponent<Renderer>().material = mats [i];
+		Instantiate (redShape);
+>>>>>>> master
 		Instantiate (blueShape);
 		Instantiate (yellowShape);
 		Instantiate (greenShape);	*/
