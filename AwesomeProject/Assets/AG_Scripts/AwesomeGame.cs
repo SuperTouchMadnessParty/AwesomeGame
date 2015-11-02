@@ -178,7 +178,7 @@ public class AwesomeGame : MonoBehaviour
 
 	public void ShapeFellOutOfBounds( Shape shape )
 	{
-		if( shape.gameObject.GetComponent<Renderer>().material.name == shapeToClick.GetComponent<Renderer>().material.name )
+		if( shape.gameObject.GetComponent<Renderer>().sharedMaterial.name == shapeToClick.GetComponent<Renderer>().sharedMaterial.name )
 		{
 			if (!startingNextRound)
 			{
