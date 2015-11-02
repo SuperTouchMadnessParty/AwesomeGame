@@ -17,6 +17,7 @@ public class AwesomeGame : MonoBehaviour
 	public GameObject greenShape;
 	public GameObject textInfo;
 	public GameObject trigger;
+	public float speedMod;
 
 	protected float spawnDelay = 1;
 
@@ -43,7 +44,6 @@ public class AwesomeGame : MonoBehaviour
 	public bool IsPaused
 	{
 		get{ return bIsPaused; }
-
 	}
 
 	private bool startingNextRound = false;
@@ -70,6 +70,10 @@ public class AwesomeGame : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		// Speed mod testing
+		speedMod = this.SpeedModifier;
+
+
 		// Mobile controls
 		if (platform == RuntimePlatform.Android || platform == RuntimePlatform.IPhonePlayer) 
 		{
@@ -187,12 +191,35 @@ public class AwesomeGame : MonoBehaviour
 	void ChangeShape()
 	{
 		int i = Random.Range (0, mats.Count);
+<<<<<<< HEAD
+		GameObject particleSystem;
+
+		shapeToClick.GetComponent<Renderer>().material = mats [i];
+
+		switch (i) {
+			case 0:
+				//particleSystem = 
+				Instantiate (redShape);
+				break;
+			case 1:
+				Instantiate (yellowShape);
+				break;
+			case 2:
+				Instantiate (greenShape);	
+				break;
+			case 3:
+				Instantiate (blueShape);
+				break;
+		}
+/*		Instantiate (redShape);
+=======
 
 		shapeToClick.GetComponent<Renderer>().material = mats [i];
 		Instantiate (redShape);
+>>>>>>> master
 		Instantiate (blueShape);
 		Instantiate (yellowShape);
-		Instantiate (greenShape);
+		Instantiate (greenShape);	*/
 
 	}
 
@@ -215,7 +242,10 @@ public class AwesomeGame : MonoBehaviour
 	*/
 	public void SpawnExplosion( GameObject particleEffect, Vector3 position, Quaternion rotation )
 	{
-		Instantiate( particleEffect, position, rotation );
+		GameObject firework = (GameObject)Instantiate( particleEffect, position, rotation );
+
+		// Removing particles after they've played
+		Destroy (firework, 1.5f);
 	}
 
 	public void GameOver()
