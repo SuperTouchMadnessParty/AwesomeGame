@@ -37,7 +37,7 @@ public class PlayButton : MonoBehaviour {
 	
 	void checkTouch( Vector2 position ) 
 	{
-		if( collider2D.OverlapPoint( position ) )
+		if( GetComponent<Collider2D>().OverlapPoint( position ) )
 			Application.LoadLevel( Application.loadedLevel + 1 );
 	}
 }

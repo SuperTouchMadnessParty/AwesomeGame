@@ -8,23 +8,28 @@ public class Shape : MonoBehaviour
 
 	private bool affectedByGravity = false;
 	private float acceleration = 0.0f;
-	private float velocity = 1.75f;
+	public float velocity = 1.75f;
 	private Vector3 direction = new Vector3( 0.0f, 0.0f, 0.0f );
 	private AwesomeGame awesomeGame;
+	public float spawnSpeedMod;
 
 	// Use this for initialization
 	void Start () 
 	{
 		GameObject game = GameObject.Find ( "Game" );
-		if( game != null )
-			awesomeGame = game.GetComponent<AwesomeGame>();
+		if (game != null) 
+		{
+			awesomeGame = game.GetComponent<AwesomeGame> ();
+			spawnSpeedMod = awesomeGame.SpeedModifier;
+		}
+
 	}
 
 	void Update()
 	{
 		if( awesomeGame )
 		{
-			if( !awesomeGame.collider.bounds.Intersects( this.collider.bounds ) )
+			if( !awesomeGame.GetComponent<Collider>().bounds.Intersects( this.GetComponent<Collider>().bounds ) )
 			{
 				awesomeGame.ShapeFellOutOfBounds( this );
 				Destroy( gameObject );
@@ -37,6 +42,13 @@ public class Shape : MonoBehaviour
 		//if( affectedByGravity )
 		if( awesomeGame )
 		{
+			if(spawnSpeedMod < awesomeGame.SpeedModifier)
+			{
+				spawnSpeedMod = awesomeGame.SpeedModifier;
+				UpdateVelocity();
+			}
+
+
 			if( !awesomeGame.IsPaused )
 			{
 				transform.position += direction * velocity * Time.fixedDeltaTime;
@@ -56,5 +68,23 @@ public class Shape : MonoBehaviour
 	public void SetVelocity( float initialVelocity )
 	{
 		velocity = initialVelocity;
+	}
+
+	public void ToggleHighlight(bool bOn) {
+		if(this.gameObject.GetComponent<Light>() != null)
+		{
+			if(bOn){
+				this.gameObject.GetComponent<Light>().enabled = true;
+			}
+			else {
+				this.gameObject.GetComponent<Light>().enabled = false;
+			}
+		}
+	}
+
+	private void UpdateVelocity() {
+		// Initial shape velocity plus the incremental value
+		// TODO: Bring in the initial velocity from the spawners to make changes smoother
+		SetVelocity (1.75f + spawnSpeedMod);
 	}
 }
