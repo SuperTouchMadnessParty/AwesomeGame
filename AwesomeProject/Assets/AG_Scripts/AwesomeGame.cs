@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 using System.Collections.Generic;
 
 public class AwesomeGame : MonoBehaviour 
@@ -19,13 +20,18 @@ public class AwesomeGame : MonoBehaviour
 	public GameObject trigger;
 	public float speedMod;
 
-	protected float spawnDelay = 1;
+    public List<GameObject> activeShapes = new List<GameObject>();
+
+
+
+
+	protected float spawnDelay = 1.25f;
 
 	public float SpawnDelay 
 	{
 		get
 		{
-			return spawnDelay - SpeedModifier * 0.25f;
+			return Math.Abs(spawnDelay - SpeedModifier * 0.225f);
 		}
 	}
 
@@ -33,7 +39,7 @@ public class AwesomeGame : MonoBehaviour
 	{
 		get
 		{
-			return (float)( score / 1000 ) * 0.2f;
+			return (score / 1000 ) * 0.2f;
 		}
 	}
 
@@ -155,7 +161,7 @@ public class AwesomeGame : MonoBehaviour
 				Shape shape = hit.transform.gameObject.GetComponent< Shape >();
 				//Debug.Log (shape.name);
 
-				if(shape.gameObject.GetComponent<Renderer>().material.name == shapeToClick.gameObject.GetComponent<Renderer>().material.name) 
+				if(shape.gameObject.GetComponent<Renderer>().sharedMaterial.name == shapeToClick.gameObject.GetComponent<Renderer>().sharedMaterial.name) 
 				{
 					//Debug.Log ("YOU DID IT CHAMP!");
 					healthMeter.RestoreHealth();
@@ -170,8 +176,8 @@ public class AwesomeGame : MonoBehaviour
 					SpawnExplosion( incorrectExplosion, shape.transform.position, shape.transform.rotation );
 					redFlash.GetComponent<ParticleSystem>().Emit(1);
 				}
-
-				Destroy(hit.transform.gameObject);
+                activeShapes.RemoveAll(p => p.GetComponent<Shape>().id == shape.id);
+                Destroy(hit.transform.gameObject);
 			}
 		}
 	}
@@ -190,7 +196,7 @@ public class AwesomeGame : MonoBehaviour
 
 	void ChangeShape()
 	{
-		int i = Random.Range (0, mats.Count);
+		int i = UnityEngine.Random.Range (0, mats.Count);
 		GameObject particleSystem;
 
 		shapeToClick.GetComponent<Renderer>().material = mats [i];
@@ -210,13 +216,21 @@ public class AwesomeGame : MonoBehaviour
 				Instantiate (blueShape);
 				break;
 		}
-/*		Instantiate (redShape);
 
-		shapeToClick.GetComponent<Renderer>().material = mats [i];
-		Instantiate (redShape);
-		Instantiate (blueShape);
-		Instantiate (yellowShape);
-		Instantiate (greenShape);	*/
+        // Logic to turn on/off particles
+
+        foreach (GameObject g in activeShapes)
+        {
+            if(g.GetComponent<Renderer>().sharedMaterial.name == shapeToClick.GetComponent<Renderer>().sharedMaterial.name)
+            {
+                g.GetComponent<Shape>().ToggleHighlight(true);
+            }
+            else
+            {
+                g.GetComponent<Shape>().ToggleHighlight(false);
+            }
+        }
+
 
 	}
 

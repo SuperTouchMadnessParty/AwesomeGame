@@ -40,5 +40,14 @@ public class ShapeSpawner : MonoBehaviour
 
 		shapeComponent.SetDirection( direction );
 		shapeComponent.SetVelocity( shapeInitialVelocity + game.SpeedModifier );
-	}
+
+        // Add reference to Game list for particle toggling
+        AwesomeGame g = GameObject.FindGameObjectWithTag("Game").GetComponent<AwesomeGame>();
+        g.activeShapes.Add(shapeObject);
+
+        if(g.shapeToClick.GetComponent<Renderer>().sharedMaterial.name == shapeObject.GetComponent<Renderer>().sharedMaterial.name)
+        {
+            shapeObject.GetComponent<Light>().enabled = true;
+        }
+    }
 }

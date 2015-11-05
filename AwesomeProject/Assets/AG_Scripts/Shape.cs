@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -11,6 +12,7 @@ public class Shape : MonoBehaviour
 	public float velocity = 1.75f;
 	private Vector3 direction = new Vector3( 0.0f, 0.0f, 0.0f );
 	private AwesomeGame awesomeGame;
+    public Guid id;
 	public float spawnSpeedMod;
 
 	// Use this for initialization
@@ -23,6 +25,8 @@ public class Shape : MonoBehaviour
 			spawnSpeedMod = awesomeGame.SpeedModifier;
 		}
 
+        id = Guid.NewGuid();
+
 	}
 
 	void Update()
@@ -32,7 +36,8 @@ public class Shape : MonoBehaviour
 			if( !awesomeGame.GetComponent<Collider>().bounds.Intersects( this.GetComponent<Collider>().bounds ) )
 			{
 				awesomeGame.ShapeFellOutOfBounds( this );
-				Destroy( gameObject );
+                awesomeGame.activeShapes.RemoveAll(p => p.GetComponent<Shape>().id == this.id);
+                Destroy( gameObject );
 			}
 		}
 	}
