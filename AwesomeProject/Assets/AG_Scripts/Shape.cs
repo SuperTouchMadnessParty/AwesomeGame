@@ -33,7 +33,8 @@ public class Shape : MonoBehaviour
 	{
 		if( awesomeGame )
 		{
-			if( !awesomeGame.GetComponent<Collider>().bounds.Intersects( this.GetComponent<Collider>().bounds ) )
+
+            if ( !awesomeGame.GetComponent<Collider>().bounds.Intersects( this.GetComponent<Collider>().bounds ) )
 			{
 				awesomeGame.ShapeFellOutOfBounds( this );
                 awesomeGame.activeShapes.RemoveAll(p => p.GetComponent<Shape>().id == this.id);

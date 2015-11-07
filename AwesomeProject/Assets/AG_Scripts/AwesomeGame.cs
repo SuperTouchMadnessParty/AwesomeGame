@@ -19,6 +19,7 @@ public class AwesomeGame : MonoBehaviour
 	public GameObject textInfo;
 	public GameObject trigger;
 	public float speedMod;
+    private GameObject lastShape;
 
     public List<GameObject> activeShapes = new List<GameObject>();
 
@@ -119,13 +120,13 @@ public class AwesomeGame : MonoBehaviour
 		if( !bIsPaused )
 		{
 			changeTime += Time.deltaTime;
+            UpdateProgressBar(changeTime, false);
 			if( changeTime >= shapeChangeDelay )
-			//if (checkscore >= 1250)
 			{
-				ChangeShape();
+                UpdateProgressBar(changeTime, true);
+                ChangeShape();
 				startingNextRound = true;
 				changeTime = 0;
-				//checkscore = 0;
 			}
 		}
 
@@ -141,13 +142,25 @@ public class AwesomeGame : MonoBehaviour
 			}
 			*/
 
-			changeTime += Time.deltaTime;
+			//changeTime += Time.deltaTime;
 			if ( changeTime >= 3/SpeedModifier) // makes the immunity after shape change shorter as game progresses
 				{
 				startingNextRound = false;
 				}
 		}
 	}
+
+    void UpdateProgressBar(float changeTime, bool resetBar)
+    {
+        GameObject g = GameObject.FindGameObjectWithTag("ProgressBar");
+        g.transform.position = new Vector3(g.transform.position.x, g.transform.position.y - 0.035f);
+
+        if(resetBar)
+        {
+            g.transform.position = new Vector3(g.transform.position.x, 0.0f);
+        }
+    }
+
 
 	void checkTouch(Vector2 position) 
 	{
@@ -205,16 +218,20 @@ public class AwesomeGame : MonoBehaviour
 			case 0:
 				//particleSystem = 
 				Instantiate (redShape);
+                lastShape = redShape;
 				break;
 			case 1:
 				Instantiate (yellowShape);
-				break;
+                lastShape = yellowShape;
+                break;
 			case 2:
-				Instantiate (greenShape);	
-				break;
+				Instantiate (greenShape);
+                lastShape = greenShape;
+                break;
 			case 3:
 				Instantiate (blueShape);
-				break;
+                lastShape = blueShape;
+                break;
 		}
 
         // Logic to turn on/off particles
