@@ -14,6 +14,8 @@ public class Shape : MonoBehaviour
 	private AwesomeGame awesomeGame;
     public Guid id;
 	public float spawnSpeedMod;
+    private bool bIlum = false;
+    private float maxRange = 1.95f;
 
 	// Use this for initialization
 	void Start () 
@@ -23,7 +25,13 @@ public class Shape : MonoBehaviour
 		{
 			awesomeGame = game.GetComponent<AwesomeGame> ();
 			spawnSpeedMod = awesomeGame.SpeedModifier;
-		}
+        }
+
+
+        if(awesomeGame.shapeToClick.GetComponent<Renderer>().sharedMaterial == this.GetComponent<Renderer>().sharedMaterial)
+        {
+            ToggleHighlight(true);
+        }
 
         id = Guid.NewGuid();
 
@@ -40,7 +48,17 @@ public class Shape : MonoBehaviour
                 awesomeGame.activeShapes.RemoveAll(p => p.GetComponent<Shape>().id == this.id);
                 Destroy( gameObject );
 			}
-		}
+
+
+            if (bIlum && this.GetComponent<Light>().range < maxRange)
+            {
+                this.GetComponent<Light>().range += 0.2f;
+            }
+            else if (!bIlum && this.GetComponent<Light>().range > 0)
+            {
+                this.GetComponent<Light>().range -= 0.2f;
+            }
+        }
 	}
 
 	void FixedUpdate () 
@@ -59,6 +77,7 @@ public class Shape : MonoBehaviour
 			{
 				transform.position += direction * velocity * Time.fixedDeltaTime;
 			}
+
 		}
 		else
 		{
@@ -81,10 +100,13 @@ public class Shape : MonoBehaviour
 		{
 			if(bOn){
 				this.gameObject.GetComponent<Light>().enabled = true;
+                bIlum = true;
 			}
 			else {
 				this.gameObject.GetComponent<Light>().enabled = false;
-			}
+                this.gameObject.GetComponent<Light>().range = 0;
+                bIlum = false;
+            }
 		}
 	}
 

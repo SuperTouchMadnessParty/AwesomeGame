@@ -234,7 +234,7 @@ public class AwesomeGame : MonoBehaviour
                 break;
 		}
 
-        // Logic to turn on/off particles
+        // Logic to turn on/off active highlights
 
         foreach (GameObject g in activeShapes)
         {
@@ -251,12 +251,7 @@ public class AwesomeGame : MonoBehaviour
 
 	}
 
-	/*
-	void OnTriggerEnter2D (Collider2D other)
-	{
-		DestroyAllObject("Shape");
-	}
-
+    /*
 	void DestroyAllObject (string tag)
 	{
 		GameObject[] ObjectsToDestroy = GameObject.FindGameObjectsWithTag("Shape");
@@ -268,7 +263,7 @@ public class AwesomeGame : MonoBehaviour
 		startingNextRound = false;
 	}
 	*/
-	public void SpawnExplosion( GameObject particleEffect, Vector3 position, Quaternion rotation )
+    public void SpawnExplosion( GameObject particleEffect, Vector3 position, Quaternion rotation )
 	{
 		GameObject firework = (GameObject)Instantiate( particleEffect, position, rotation );
 
