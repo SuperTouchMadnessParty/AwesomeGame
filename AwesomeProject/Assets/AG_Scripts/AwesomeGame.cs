@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System;
 using System.Collections.Generic;
@@ -153,10 +154,13 @@ public class AwesomeGame : MonoBehaviour
     void UpdateProgressBar(float changeTime, bool resetBar)
     {
         GameObject g = GameObject.FindGameObjectWithTag("ProgressBar");
-        g.transform.position = new Vector3(g.transform.position.x, g.transform.position.y - 0.035f);
 
-        if(resetBar)
+        g.GetComponent<Image>().fillAmount -=  Time.deltaTime / shapeChangeDelay;
+        //g.transform.position = new Vector3(g.transform.position.x, g.transform.position.y - 0.035f);
+
+        if (resetBar)
         {
+            g.GetComponent<Image>().fillAmount = 1;
             g.transform.position = new Vector3(g.transform.position.x, 0.0f);
         }
     }
@@ -217,19 +221,19 @@ public class AwesomeGame : MonoBehaviour
 		switch (i) {
 			case 0:
 				//particleSystem = 
-				Instantiate (redShape);
+				//Instantiate (redShape);
                 lastShape = redShape;
 				break;
 			case 1:
-				Instantiate (yellowShape);
+				//Instantiate (yellowShape);
                 lastShape = yellowShape;
                 break;
 			case 2:
-				Instantiate (greenShape);
+				//Instantiate (greenShape);
                 lastShape = greenShape;
                 break;
 			case 3:
-				Instantiate (blueShape);
+				//Instantiate (blueShape);
                 lastShape = blueShape;
                 break;
 		}
