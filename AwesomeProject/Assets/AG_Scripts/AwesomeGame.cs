@@ -108,6 +108,7 @@ public class AwesomeGame : MonoBehaviour
 					bIsPaused = false;
 					DestroyObject(textInfo); 
 					tutorial = false;
+                    GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>().Play();
 				}
 			}
 				else if(Input.GetMouseButtonDown(0))
@@ -115,6 +116,7 @@ public class AwesomeGame : MonoBehaviour
 					bIsPaused = false;
 					DestroyObject(textInfo); 
 					tutorial = false; 
+                    GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>().Play();
 				}
 		}
 
