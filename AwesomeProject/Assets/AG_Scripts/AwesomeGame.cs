@@ -163,7 +163,7 @@ public class AwesomeGame : MonoBehaviour
         if (resetBar)
         {
             g.GetComponent<Image>().fillAmount = 1;
-            g.transform.position = new Vector3(g.transform.position.x, 0.0f);
+            //g.transform.position = new Vector3(g.transform.position.x, 0.0f);
         }
     }
 
